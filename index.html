@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Prova - Técnico em Mecânica</title>
+  <style>
+    body { font-family: Arial; background:#111; color:#fff; padding:20px; }
+    .container { max-width:700px; margin:auto; }
+    .question { margin-bottom:20px; }
+    input { margin:5px 0; }
+    button { padding:10px 20px; background:#fff; color:#000; border:none; cursor:pointer; }
+    .result { margin-top:20px; font-size:18px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Prova - Técnico em Mecânica</h1>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>Nome do aluno:</p>
+      <input type="text" name="nome" required>
+    </div>
+
+    <div class="question">
+      <p>1. Qual ferramenta é usada para medir diâmetro interno?</p>
+      <label><input type="radio" name="q1" value="Paquímetro|0" required> Paquímetro</label><br>
+      <label><input type="radio" name="q1" value="Micrômetro interno|1"> Micrômetro interno</label><br>
+      <label><input type="radio" name="q1" value="Régua|0"> Régua</label>
+    </div>
+
+    <div class="question">
+      <p>2. O que significa tolerância dimensional?</p>
+      <label><input type="radio" name="q2" value="Variação permitida|1" required> Variação permitida na medida</label><br>
+      <label><input type="radio" name="q2" value="Erro do operador|0"> Erro do operador</label><br>
+      <label><input type="radio" name="q2" value="Tipo de material|0"> Tipo de material</label>
+    </div>
+
+    <div class="question">
+      <p>3. Qual processo usa remoção de material?</p>
+      <label><input type="radio" name="q3" value="Usinagem|1" required> Usinagem</label><br>
+      <label><input type="radio" name="q3" value="Soldagem|0"> Soldagem</label><br>
+      <label><input type="radio" name="q3" value="Fundição|0"> Fundição</label>
+    </div>
+
+    <div class="question">
+      <p>4. O que é lubrificação?</p>
+      <label><input type="radio" name="q4" value="Redução de atrito|1" required> Redução de atrito</label><br>
+      <label><input type="radio" name="q4" value="Aumento de calor|0"> Aumento de calor</label><br>
+      <label><input type="radio" name="q4" value="Fixação de peças|0"> Fixação de peças</label>
+    </div>
+
+    <div class="question">
+      <p>5. Qual desses é um tipo de aço?</p>
+      <label><input type="radio" name="q5" value="Aço carbono|1" required> Aço carbono</label><br>
+      <label><input type="radio" name="q5" value="Alumínio|0"> Alumínio</label><br>
+      <label><input type="radio" name="q5" value="Cobre|0"> Cobre</label>
+    </div>
+
+    <button type="submit">Finalizar Prova</button>
+  </form>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+let startTime = Date.now();
+
+document.getElementById("quizForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+
+  let score = 0;
+  let respostasTexto = "";
+  let nome = formData.get("nome");
+
+  let i = 1;
+  for (let [key, value] of formData.entries()) {
+    if(key.startsWith("q")){
+      let [resposta, ponto] = value.split("|");
+      score += parseInt(ponto);
+      respostasTexto += `Q${i}: ${resposta} | `;
+      i++;
+    }
+  }
+
+  let endTime = Date.now();
+  let timeTaken = ((endTime - startTime) / 1000).toFixed(2);
+
+  document.getElementById("result").innerHTML =
+    `Nome: ${nome}<br>Nota: ${score}/5 <br>Tempo: ${timeTaken} segundos`;
+
+  // ===== ENVIO PARA GOOGLE FORMS =====
+  fetch("https://docs.google.com/forms/d/e/1FAIpQLSdJWiq7j-RwZ2JavAfcl1w-rTUyb-GdlyoWLPa2Iqb9tj2euQ/formResponse?usp=dialog", {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+  "Content-Type": "application/x-www-form-urlencoded"
+},
+body: `entry.552559637=${encodeURIComponent(nome)}&entry.110196330=${score}&entry.1389033276=${timeTaken}&entry.1807859427=${encodeURIComponent(respostasTexto)}`
+});
+});
+</script>
+</body>
+</html>
