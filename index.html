@@ -3,65 +3,186 @@
 <head>
   <meta charset="UTF-8">
   <title>Prova - Técnico em Mecânica</title>
+
   <style>
-    body { font-family: Arial; background:#111; color:#fff; padding:20px; }
-    .container { max-width:700px; margin:auto; }
-    .question { margin-bottom:20px; }
-    input { margin:5px 0; }
-    button { padding:10px 20px; background:#fff; color:#000; border:none; cursor:pointer; }
-    .result { margin-top:20px; font-size:18px; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .card {
+      background: #fff;
+      color: #111;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #0ea5a4;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .info-box {
+      background: #f1f5f9;
+      border-left: 5px solid #f97316;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .question {
+      margin-bottom: 25px;
+    }
+
+    .question p {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+
+    label {
+      display: block;
+      background: #f8fafc;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    label:hover {
+      background: #e0f2fe;
+    }
+
+    input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(90deg, #f97316, #0ea5a4);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.03);
+      opacity: 0.9;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      text-align: center;
+      background: #ecfeff;
+      color: #0f172a;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
   </style>
 </head>
+
 <body>
 <div class="container">
-  <h1>Prova - Técnico em Mecânica</h1>
 
-  <form id="quizForm">
+  <div class="card">
+    <h1>Prova Técnica</h1>
+    <p class="subtitle">Curso Técnico em Mecânica</p>
 
-    <div class="question">
-      <p>Nome do aluno:</p>
-      <input type="text" name="nome" required>
+    <div class="info-box">
+      <strong>Como funciona:</strong><br>
+      • A prova contém 5 questões objetivas.<br>
+      • Cada questão vale 1 ponto.<br>
+      • A nota final é exibida ao finalizar.<br>
+      • O tempo total também é registrado automaticamente.<br>
+      • Suas respostas são enviadas para análise.
     </div>
 
-    <div class="question">
-      <p>1. Qual ferramenta é usada para medir diâmetro interno?</p>
-      <label><input type="radio" name="q1" value="Paquímetro|0" required> Paquímetro</label><br>
-      <label><input type="radio" name="q1" value="Micrômetro interno|1"> Micrômetro interno</label><br>
-      <label><input type="radio" name="q1" value="Régua|0"> Régua</label>
-    </div>
+    <form id="quizForm">
 
-    <div class="question">
-      <p>2. O que significa tolerância dimensional?</p>
-      <label><input type="radio" name="q2" value="Variação permitida|1" required> Variação permitida na medida</label><br>
-      <label><input type="radio" name="q2" value="Erro do operador|0"> Erro do operador</label><br>
-      <label><input type="radio" name="q2" value="Tipo de material|0"> Tipo de material</label>
-    </div>
+      <div class="question">
+        <p>Nome do aluno:</p>
+        <input type="text" name="nome" required>
+      </div>
 
-    <div class="question">
-      <p>3. Qual processo usa remoção de material?</p>
-      <label><input type="radio" name="q3" value="Usinagem|1" required> Usinagem</label><br>
-      <label><input type="radio" name="q3" value="Soldagem|0"> Soldagem</label><br>
-      <label><input type="radio" name="q3" value="Fundição|0"> Fundição</label>
-    </div>
+      <div class="question">
+        <p>1. Qual ferramenta é usada para medir diâmetro interno?</p>
+        <label><input type="radio" name="q1" value="Paquímetro|0" required> Paquímetro</label>
+        <label><input type="radio" name="q1" value="Micrômetro interno|1"> Micrômetro interno</label>
+        <label><input type="radio" name="q1" value="Régua|0"> Régua</label>
+      </div>
 
-    <div class="question">
-      <p>4. O que é lubrificação?</p>
-      <label><input type="radio" name="q4" value="Redução de atrito|1" required> Redução de atrito</label><br>
-      <label><input type="radio" name="q4" value="Aumento de calor|0"> Aumento de calor</label><br>
-      <label><input type="radio" name="q4" value="Fixação de peças|0"> Fixação de peças</label>
-    </div>
+      <div class="question">
+        <p>2. O que significa tolerância dimensional?</p>
+        <label><input type="radio" name="q2" value="Variação permitida|1" required> Variação permitida na medida</label>
+        <label><input type="radio" name="q2" value="Erro do operador|0"> Erro do operador</label>
+        <label><input type="radio" name="q2" value="Tipo de material|0"> Tipo de material</label>
+      </div>
 
-    <div class="question">
-      <p>5. Qual desses é um tipo de aço?</p>
-      <label><input type="radio" name="q5" value="Aço carbono|1" required> Aço carbono</label><br>
-      <label><input type="radio" name="q5" value="Alumínio|0"> Alumínio</label><br>
-      <label><input type="radio" name="q5" value="Cobre|0"> Cobre</label>
-    </div>
+      <div class="question">
+        <p>3. Qual processo usa remoção de material?</p>
+        <label><input type="radio" name="q3" value="Usinagem|1" required> Usinagem</label>
+        <label><input type="radio" name="q3" value="Soldagem|0"> Soldagem</label>
+        <label><input type="radio" name="q3" value="Fundição|0"> Fundição</label>
+      </div>
 
-    <button type="submit">Finalizar Prova</button>
-  </form>
+      <div class="question">
+        <p>4. O que é lubrificação?</p>
+        <label><input type="radio" name="q4" value="Redução de atrito|1" required> Redução de atrito</label>
+        <label><input type="radio" name="q4" value="Aumento de calor|0"> Aumento de calor</label>
+        <label><input type="radio" name="q4" value="Fixação de peças|0"> Fixação de peças</label>
+      </div>
 
-  <div class="result" id="result"></div>
+      <div class="question">
+        <p>5. Qual desses é um tipo de aço?</p>
+        <label><input type="radio" name="q5" value="Aço carbono|1" required> Aço carbono</label>
+        <label><input type="radio" name="q5" value="Alumínio|0"> Alumínio</label>
+        <label><input type="radio" name="q5" value="Cobre|0"> Cobre</label>
+      </div>
+
+      <button type="submit">Finalizar Prova</button>
+    </form>
+
+    <div class="result" id="result"></div>
+
+  </div>
 </div>
 
 <script>
@@ -92,7 +213,6 @@ document.getElementById("quizForm").addEventListener("submit", function(e) {
   document.getElementById("result").innerHTML =
     `Nome: ${nome}<br>Nota: ${score}/5 <br>Tempo: ${timeTaken} segundos`;
 
-  // ===== ENVIO PARA GOOGLE FORMS =====
   fetch("https://docs.google.com/forms/d/e/1FAIpQLSdJWiq7j-RwZ2JavAfcl1w-rTUyb-GdlyoWLPa2Iqb9tj2euQ/formResponse?usp=dialog", {
     method: "POST",
     mode: "no-cors",
